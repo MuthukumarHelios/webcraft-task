@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+      <link rel="stylesheet" type="text/css" href="styles/login.css">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+      <link rel="stylesheet" href="style.css">
+      <!-- Google Fonts -->
+      <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  
+
+
+
+    </head>
+    <body ng-app ="app" ng-controller = "maincontroller">
+      <h1 ui-sref='login'>login</h1>
+      <h1 ui-sref='createPost'>post</h1> 
+       <h2 ui-sref='register'>register</h2>
+      <div ui-view></div>
+        <script src = "dependencies/angular.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.js"></script>
+          <script src = "dependencies/angular-ui-router.min.js"></script>
+            <script src = "javascripts/angconfig.js"></script>
+              <script src = "javascripts/angcontroller.js"></script>
+
+               <script src = "javascripts/angservice.js"></script>
+    </body>
+    </html>
