@@ -7,8 +7,12 @@ User can post a  multiple images on the particular post created by them
 
 Project Structure
 --
-backend --> Consists of api 
+backend --> Consists of api
+
 models --> Database schema
+
 public --> Angular 
+
 .env --> config file
+
 server.js --> Runtime Configuration for the nodejs 
