@@ -13,21 +13,28 @@ return {
     return $http.post("/user/logout");
   },
   register : (obj) => {      
-    return $http.post("/user/regiser",obj);
+    return $http.post("/user/register",obj);
   },
   
-
   // file upload @params Formdata
-
   createPost : (obj) => {
-     return $http.post('/user/createPost', obj);
-  },
-  
 
+    var request = {
+      method: 'POST',
+      url: '/user/createPost',
+      data: new FormData(),
+      headers: {
+          'Content-Type': undefined
+      }
+  };
+  return $http(request);
+},
   commentPost: (obj) => {
      return $http.post('/user/posts/comment',obj)
   },
-  
+  allposts: () => {
+    return $http.get('/user/posts/all')
+  },
   searchPost: (obj) => {
     return $http.post('/user/posts/search?search'+obj)
  }

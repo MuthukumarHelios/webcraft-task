@@ -94,13 +94,18 @@ exports.login = (req, res) => {
 
   var p =   new Promise((resolve,reject) => {
         user.findOne({email: req.body.email}).then(result => {
-            // log(req.session);
-            // log("result id",result._id);         
-            req.session._id = result._id;           
-           return result.password;
+               if(!result) {
+                   return reject("Kindly enter a valid User name")        
+                }else{
+
+                    req.session["_id"] = result._id;           
+                    log("result",result);
+                   return result;
+                          
+                }        
         }).then(password => {
             log(password);
-            bcrypt.compare(req.body.password, password).then(result => {
+            bcrypt.compare(req.body.password, password.password).then(result => {
                 if (result) {
                     resolve("logged in successfully");
                 } else {
