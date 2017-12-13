@@ -16,3 +16,7 @@ public --> Angular
 .env --> config file
 
 server.js --> Runtime Configuration for the nodejs 
+
+
+//postman collection
+==>https://www.getpostman.com/collections/07503a8b78bc7927ff3d

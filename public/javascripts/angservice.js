@@ -9,9 +9,11 @@ return {
   login : (obj) => {
     return $http.post("/user/login",obj);
   },
+
   logout : () => {
     return $http.post("/user/logout");
   },
+  
   register : (obj) => {      
     return $http.post("/user/register",obj);
   },
@@ -35,10 +37,11 @@ return {
   allposts: () => {
     return $http.get('/user/posts/all')
   },
+  
   searchPost: (obj) => {
     return $http.post('/user/posts/search?search'+obj)
- }
+  }
  
- }
+}
 
 });
