@@ -25,16 +25,16 @@ var bcrypt = require('bcrypt');
 
 exports.hel = (req, res) => {
     log(blue("hello"));
-    res.json("just an test api");
+    res.json("Hello world");
 };
 
 
 exports.allUser = (req, res) => {
+
     log(req.session);
-    user.findOne({_id: req.session._id}).then(value => {
+    user.findOne({}).then(value => {
         responseSuccess(value,res);
-    
-    }).catch(er => 
+    }).catch(er =>
     {
         responseFail(er.message, res);
     })
@@ -48,15 +48,20 @@ exports.allposts = (req,res) => {
         res.json(er.message);
     })
 }
+exports.add = (i , j) => {
+  return i+j;
+};
+
 
 exports.registerUser = (req, res) => {
 
 
-// return false;    
+// return false;
     var dbdata = {
         name: req.body.name,
         email: req.body.email
     };
+
 
     var p = new Promise((resolve, reject) => {
 
@@ -79,7 +84,7 @@ exports.registerUser = (req, res) => {
     p.then(value => {
         log("success",req.body);
        responseSuccess(value, res);
-      
+
     }).catch(er => {
         log("success",req.body);
       responseFail(value, res);
@@ -95,14 +100,14 @@ exports.login = (req, res) => {
   var p =   new Promise((resolve,reject) => {
         user.findOne({email: req.body.email}).then(result => {
                if(!result) {
-                   return reject("Kindly enter a valid User name")        
+                   return reject("Kindly enter a valid User name")
                 }else{
 
-                    req.session["_id"] = result._id;           
+                    req.session["_id"] = result._id;
                     log("result",result);
                    return result;
-                          
-                }        
+
+                }
         }).then(password => {
             log(password);
             bcrypt.compare(req.body.password, password.password).then(result => {
@@ -120,13 +125,13 @@ exports.login = (req, res) => {
         })
 
         // resolving promises
-   
+
     });
 
 
-    p.then(value => {                
+    p.then(value => {
         responseSuccess(value, res);
-    }).catch(er => {        
+    }).catch(er => {
         log("error",er);
         responseFail(er, res);
     })
@@ -175,7 +180,7 @@ post.create(dbdata).then(value => {
 exports.commentPost = (req, res) => {
 
     post.update({_id: req.body.id},
-         {$push: {comments: req.body.comment}}, 
+         {$push: {comments: req.body.comment}},
          {upsert : true}).then(val => {
 
             responseSuccess(val, res);
@@ -183,11 +188,12 @@ exports.commentPost = (req, res) => {
     }).catch(er => {
         responseFail(er.message, res);
         // res.json(er.message);
-    }) 
+    })
 };
 
 
 exports.search = (req, res) => {
+
 
   post.find({'title': {'$regex': req.query.search}})
       .then(result => {
@@ -195,5 +201,25 @@ exports.search = (req, res) => {
     }).catch(er => {
         responseFail(er.message, res);
     });
-}
 
+
+}
+var await = require('await');
+var async = require('async');
+// try throw catch issue fixed
+exports.tryThrow = async (req, res) => {
+var z;
+     try{
+       if(!true){
+         z = await user.findOne({});
+         res.json(z)
+       }else{
+            throw "failed";
+        }
+      log(z)
+     }catch(ex){
+       res.json(ex)
+       log(ex)
+     }
+
+}

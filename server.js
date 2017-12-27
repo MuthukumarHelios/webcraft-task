@@ -80,11 +80,5 @@ app.use((req, res, next) => {
 // });
 
 app.use(api);
-
-
-
-
 console.log('you app runinng on ', process.env.PORT);
 app.listen(process.env.PORT);
-
-
